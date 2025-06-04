@@ -4300,7 +4300,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1149321778}
   - component: {fileID: 1149321777}
-  - component: {fileID: 1149321779}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4320,12 +4319,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5760b1c9734b84fb13c9969d19b026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textManager: {fileID: 0}
   userData:
+    userID: 
     userName: 
     balance: 0
     cash: 0
-  userName: "\uC775\uBA85"
+  textManager: {fileID: 0}
+  userID: 
+  userName: 
   balance: 50000
   cash: 100000
 --- !u!4 &1149321778
@@ -4343,21 +4344,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1149321779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149321776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ae60633c3528b445ac3fc1ad8044f8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userNameText: {fileID: 0}
-  balanceText: {fileID: 0}
-  cashText: {fileID: 0}
 --- !u!1 &1158766196
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public TextManager textManager;
     public UserData userData;
+    public TextManager textManager;
 
-    [SerializeField] private int balance = 50000;
-    [SerializeField] private int cash = 100000;
+    public string userID;
+    [SerializeField] private string userName;
+    [SerializeField] private int balance;
+    [SerializeField] private int cash;
 
     private void Awake()
     {
@@ -27,19 +30,15 @@ public class GameManager : MonoBehaviour
 
     public void Refresh()
     {
-        if (textManager == null)
-        {
-            return;
-        }
+        if (textManager == null) return;
 
         textManager.UpdateText();
     }
 
     public void SaveUserData()
     {
-        PlayerPrefs.SetString("유저명", userData.userName);
-        PlayerPrefs.SetInt("잔액", userData.balance);
-        PlayerPrefs.SetInt("현금", userData.cash);
+        PlayerPrefs.SetInt($"{userData.userID}/Balance", userData.balance);
+        PlayerPrefs.SetInt($"{userData.userID}/Cash", userData.cash);
         PlayerPrefs.Save();
 
         Debug.Log("유저명: " +userData.userName + ", 잔액: " + userData.balance + ", 현금: " + userData.cash);
@@ -47,15 +46,21 @@ public class GameManager : MonoBehaviour
 
     public void LoadUserData()
     {
+        userName = PlayerPrefs.GetString($"{userData.userID}/UserName");
+        balance = PlayerPrefs.GetInt($"{userData.userID}/Balance");
+        cash = PlayerPrefs.GetInt($"{userData.userID}/Cash");
+
         Debug.Log("유저명: " + userData.userName + ", 잔액: " + userData.balance + ", 현금: " + userData.cash);
         Refresh();
     }
 
-    public void UnSaveUserData()
+    public void LoadLoginScene()
     {
-        PlayerPrefs.DeleteKey("유저명");
-        PlayerPrefs.DeleteKey("잔액");
-        PlayerPrefs.DeleteKey("현금");
-        PlayerPrefs.Save();
-    }   
+        SaveUserData();
+        SceneManager.LoadScene("LoginScene");
+    }
+    public void LoadMainScene()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
 }

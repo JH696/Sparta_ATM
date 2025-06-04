@@ -1,7 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;  
+using UnityEngine.UI; 
 
 public class LoginPage : MonoBehaviour
 {
@@ -10,29 +9,25 @@ public class LoginPage : MonoBehaviour
 
     public GameObject SignUpPanel;
 
-    public void Start()
-    {
-        GameManager.instance.userData.userName = PlayerPrefs.GetString($"242wlsghks/UserName");
-        Debug.Log("유저명: " + GameManager.instance.userData.userName);
-    }
-
     public void OnLoginButton()
     {
         if (PlayerPrefs.HasKey(ID.text))
         {
-            string savedPassword = PlayerPrefs.GetString($"242wlsghks/Password");
+            string savedPassword = PlayerPrefs.GetString($"{ID.text}/Password");
             if (savedPassword == Password.text)
             {
                 Debug.Log("로그인 성공: " + ID.text);
 
+                GameManager.instance.userData.userID = ID.text;
+                GameManager.instance.userID = ID.text;
 
-                GameManager.instance.userData.userName = PlayerPrefs.GetString($"242wlsghks/UserName");
+                GameManager.instance.userData.userName = PlayerPrefs.GetString($"{ID.text}/UserName");
                 GameManager.instance.userData.balance = PlayerPrefs.GetInt($"{ID.text}/Balance", 50000);
                 GameManager.instance.userData.cash = PlayerPrefs.GetInt($"{ID.text}/Cash", 100000);
 
                 GameManager.instance.LoadUserData();
 
-                SceneManager.LoadScene("MainScene");
+                GameManager.instance.LoadMainScene();
             }
             else
             {

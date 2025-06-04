@@ -6,7 +6,6 @@ public class ATM : MonoBehaviour
 {
     [SerializeField] private int moneyInput = 0;
 
-    [Header("UI Elements")]
     public GameObject DepositScreenButton;
     public GameObject WithdrawScreenButton;
 
