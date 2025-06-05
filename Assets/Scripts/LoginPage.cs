@@ -8,6 +8,8 @@ public class LoginPage : MonoBehaviour
     public TMP_InputField Password;
 
     public GameObject SignUpPanel;
+    public GameObject ErrorPanel;
+    public TextMeshProUGUI ErrorText;
 
     public void OnLoginButton()
     {
@@ -36,7 +38,8 @@ public class LoginPage : MonoBehaviour
         }
         else
         {
-            Debug.Log("존재하지 않는 ID입니다.");
+            ErrorPanel.SetActive(true);
+            ErrorText.text = "존재하지 않는 아이디입니다.";
         }
     }
 
